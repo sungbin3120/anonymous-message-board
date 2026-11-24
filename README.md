@@ -1,7 +1,7 @@
 # Practice · Anonymous Message Board
 Node.js 24 LTS 환경에서 압축을 풀고 package.json이 있는 폴더에서 `npm ci`, `npm run dev`를 실행하세요. http://localhost:3000/api/posts 에서 빈 목록이 보이면 준비되었습니다. SQLite 파일은 첫 요청 때 data/에 생성되며 재시작 후에도 유지됩니다.
 
-게시판은 기본적으로 실행 중인 Next.js 서버의 포트로 API를 조회합니다. `.env.local`에 `API_BASE_URL`을 직접 지정했다면 현재 실행 주소와 일치하는지 확인하세요.
+게시판은 실행 중인 Next.js 서버의 포트로 API를 조회합니다. 실행 포트가 환경에 제공되지 않을 때는 `API_BASE_URL`을 사용하며, 둘 다 없으면 `http://localhost:3000`을 사용합니다.
 
 ## API 명세
 요청 본문은 application/json입니다. 게시글 요약은 id(number), title(string), author("익명"), createdAt(UTC ISO 문자열), views(number)로 구성됩니다. 상세 게시글에는 content(string)가 추가됩니다.
