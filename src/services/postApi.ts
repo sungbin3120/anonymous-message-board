@@ -16,7 +16,7 @@ async function request(path: string, init?: RequestInit) {
 }
 
 function serverUrl(path: string) {
-  const base = process.env.API_BASE_URL?.trim() || 'http://localhost:3000'
+  const base = process.env.API_BASE_URL?.trim() || `http://localhost:${process.env.PORT || '3000'}`
   return new URL(path, base).href
 }
 

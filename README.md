@@ -1,7 +1,7 @@
 # Practice · Anonymous Message Board
 Node.js 24 LTS 환경에서 압축을 풀고 package.json이 있는 폴더에서 `npm ci`, `npm run dev`를 실행하세요. http://localhost:3000/api/posts 에서 빈 목록이 보이면 준비되었습니다. SQLite 파일은 첫 요청 때 data/에 생성되며 재시작 후에도 유지됩니다.
 
-API 주소의 기본값은 `http://localhost:3000`입니다. 다른 포트를 사용하면 `.env.local`의 `API_BASE_URL`을 실행 주소에 맞춰 설정하고 서버를 재시작하세요.
+게시판은 기본적으로 실행 중인 Next.js 서버의 포트로 API를 조회합니다. `.env.local`에 `API_BASE_URL`을 직접 지정했다면 현재 실행 주소와 일치하는지 확인하세요.
 
 ## API 명세
 요청 본문은 application/json입니다. 게시글 요약은 id(number), title(string), author("익명"), createdAt(UTC ISO 문자열), views(number)로 구성됩니다. 상세 게시글에는 content(string)가 추가됩니다.
@@ -20,7 +20,7 @@ API 주소의 기본값은 `http://localhost:3000`입니다. 다른 포트를 �
 
 ## 학생 실습 (60~90분)
 1. Mock 데이터로 src/app/posts 아래에 목록, [id] 상세, new 페이지를 만들고 Link와 공통 레이아웃을 연결하세요.
-2. .env.example을 .env.local로 복사하고 실행 포트에 맞게 주소를 설정하세요. src/types/post.ts에서 계약을 정의하고 src/services/postApi.ts에서 API 호출을 구현하세요. Server Component는 API_BASE_URL을 사용해 절대 URL로 조회하고 Client Component의 폼은 같은 출처의 /api/posts로 제출하세요. 빌드 시 서버가 실행되지 않아도 되도록 조회 페이지는 동적 렌더링하고 fetch에는 cache: 'no-store'를 지정하세요.
+2. src/types/post.ts에서 계약을 정의하고 src/services/postApi.ts에서 API 호출을 구현하세요. Server Component는 실행 중인 서버 주소 또는 API_BASE_URL로 절대 URL을 구성하고 Client Component의 폼은 같은 출처의 /api/posts로 제출하세요. 빌드 시 서버가 실행되지 않아도 되도록 조회 페이지는 동적 렌더링하고 fetch에는 cache: 'no-store'를 지정하세요.
 3. [id]/edit, 삭제, 검색과 페이지 이동을 구현하세요. 제출 중 버튼을 비활성화하고 성공 후 이동 및 화면 갱신을 처리하세요. loading.tsx, error.tsx, not-found.tsx와 빈 목록 안내를 작성하세요. 조회수 증가를 사용하므로 상세 Link에는 prefetch={false}를 지정하세요.
 
 완료 후 다른 글의 토큰으로 수정을 시도해 403을 확인하고, 올바른 토큰으로 삭제한 뒤 목록과 상세 화면을 확인하세요.
